@@ -11,3 +11,31 @@ class Cancion(db.Model):
 
     def __repr__(self):
         return "{}-{}-{}-{}".format(self.titulo, self.minutos, self.segundos, self.interprete)
+
+class Usuario (db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre_usuario = db.Column(db.String(128))
+    contraseña = db.Column(db.String(128))
+
+    def __repr__(self):
+        return "{}-{}-{}-{}".format(self.nombre_usuario, self.contraseña)
+
+class Album (db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    titulo = db.Column(db.String(128))
+    año = db.Column(db.Integer)
+    descripcion = db.Column(db.String(128))
+    medio = db.Column(db.String(128))
+
+    def __repr__(self):
+        return "{}-{}-{}-{}".format(self.titulo, self.año, self.descripcion, self.medio)
+
+
+class medio (db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    disco = db.Column(db.String)
+    casete = db.Column(db.String)
+    cd = db.Column(db.String)
+
+    def __repr__(self):
+        return "{}-{}-{}-{}".format(self.disco, self.casete, self.cd)
