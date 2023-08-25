@@ -1,5 +1,8 @@
 from flaskr import create_app
-from .modelos import db, Cancion
+from .modelos import db, Cancion, Album, Usuario, Medio
+from flask_restful import Api
+from .vistas import VistaCanciones, VistaCancion
+
 
 app = create_app('default')
 app_context = app.app_context()
@@ -8,10 +11,7 @@ app_context.push()
 db.init_app(app)
 db.create_all()
 
-#prueba
+api = Api(app)
+api.add_resource(VistaCanciones,'\canciones')
+api.add_resource(VistaCancion,'\canciones\<int:id_cancion>')
 
-with app.app_context():
-    c = Cancion(titulo='prueba', minutos=2, segundos=25, interprete='katalina')
-    db.session.add(c)
-    db.session.commit()
-    print(Cancion.query.all())
